@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% block body %}
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tractor</th>
+            <th scope="col">Details</th>
+            <th scope="col">View owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for member in mymembers %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{member.tractor}}</td>
+            <td>{{member.details}}</td>
+            <td>
+              <!-- Trigger the modal with a button -->
+              <button
+                type="button"
+                class="btn btn-info btn-lg"
+                data-toggle="modal"
+                data-target="#myModal{{forloop.counter}}"
+              >
+                Owner
+              </button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% for member in mymembers %}
+              <!-- Modal -->
+              <div id="myModal{{forloop.counter}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">
+                        &times;
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>{{member.name}} <p>
+                      <p>{{member.mobile}} <p>
+                      <p>{{member.email}} <p>
+                      <p>{{member.tractor}} <p>
+                    
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+          
+       
+    </div>
+   
+{% endblock%}
